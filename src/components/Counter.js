@@ -61,6 +61,10 @@ class Counter extends Component {
         this.props.decrement();
     };
 
+    increaseHandler() {
+        this.props.increase();
+    }
+
     toggleCounterHandler() { };
 
     render() {
@@ -77,6 +81,9 @@ class Counter extends Component {
                             <Stack direction="horizontal" gap="3" className="mb-2">
                                 <Button onClick={this.incrementHandler.bind(this)}>
                                     Increment
+                                </Button>
+                                <Button onClick={this.increaseHandler.bind(this)}>
+                                    Increment By 5
                                 </Button>
                                 <Button onClick={this.decrementHandler.bind(this)}>
                                     Decrement
@@ -100,7 +107,8 @@ const mapStateProps = state => {
 const mapDispatchProps = dispatch => { 
     return {
         increment: () => dispatch({ type: "increment" }),
-        decrement : () => dispatch({type : "decrement"})
+        decrement: () => dispatch({ type: "decrement" }),
+        increase : () => dispatch ({type:"increase",amount:5})
     }
 };
 export default connect(mapStateProps,mapDispatchProps)(Counter);
