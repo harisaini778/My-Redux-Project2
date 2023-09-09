@@ -3,7 +3,7 @@ import redux from "redux";
 import { legacy_createStore } from "redux";
 
 const counterReducer = (state = { counter: 0 }, action) => {
-    if (action.type === "icrement") {
+    if (action.type === "increment") {
         return {
             counter: state.counter + 1,
        }
