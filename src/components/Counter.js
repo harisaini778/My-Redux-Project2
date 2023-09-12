@@ -2,65 +2,52 @@ import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { counterActions } from "../store";
 
-const Counter = (props) => {
-    const incrementHandler = () => {
-        props.increment();
-    };
+const Counter = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
 
-    const decrementHandler = () => {
-        props.decrement();
-    };
+  const incrementHandler = () => {
+    dispatch(counterActions.increment());
+  };
 
-    const increaseHandler = () => {
-        props.increase();
-    };
+  const decrementHandler = () => {
+    dispatch(counterActions.decrement());
+  };
 
-    const toggleCounterHandler = () => {
-        props.toggle();
-    };
+  const increaseHandler = () => {
+    dispatch(counterActions.increase(5));
+  };
 
-    return (
-        <div>
-            <Container className="mt-4">
-                <Card>
-                    <Card.Header>
-                        <h1>Redux Counter</h1>
-                    </Card.Header>
-                    <Card.Body>
-                        {props.showCounter ? <h1>{props.counter}</h1> : null}
-                    </Card.Body>
-                    <Card.Footer>
-                        <div className="d-flex justify-content-center">
-                            <Stack direction="horizontal" gap="3" className="mb-2">
-                                <Button onClick={incrementHandler}>Increment</Button>
-                                <Button onClick={increaseHandler}>Increment By 5</Button>
-                                <Button onClick={decrementHandler}>Decrement</Button>
-                            </Stack>
-                        </div>
-                        <Button onClick={toggleCounterHandler}>Toggle Counter</Button>
-                    </Card.Footer>
-                </Card>
-            </Container>
-        </div>
-    );
+  const toggleCounterHandler = () => {
+    dispatch(counterActions.toggleCounter());
+  };
+
+  return (
+    <div>
+      <Container className="mt-4">
+        <Card>
+          <Card.Header>
+            <h1>Redux Counter</h1>
+          </Card.Header>
+          <Card.Body>{showCounter ? <h1>{counter}</h1> : null}</Card.Body>
+          <Card.Footer>
+            <div className="d-flex justify-content-center">
+              <Stack direction="horizontal" gap="3" className="mb-2">
+                <Button onClick={incrementHandler}>Increment</Button>
+                <Button onClick={increaseHandler}>Increment By 5</Button>
+                <Button onClick={decrementHandler}>Decrement</Button>
+              </Stack>
+            </div>
+            <Button onClick={toggleCounterHandler}>Toggle Counter</Button>
+          </Card.Footer>
+        </Card>
+      </Container>
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        counter: state.counter,
-        showCounter: state.showCounter,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        increment: () => dispatch({ type: "increment" }),
-        decrement: () => dispatch({ type: "decrement" }),
-        increase: () => dispatch({ type: "increase", amount: 5 }),
-        toggle: () => dispatch({ type: "toggle" }),
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;
