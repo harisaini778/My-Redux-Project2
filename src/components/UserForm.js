@@ -18,8 +18,8 @@ export const UserForm = () => {
     return (
         <div className="d-flex justify-content-center mt-5">
             {!isAuth && <Card>
-                <Card.Header>
-                    <h2>Redux User Login </h2>
+                <Card.Header className="bg-dark">
+                    <h2 style={{color:"white"}}>Redux User Login </h2>
                 </Card.Header>
                 <Card.Body>
                     <Form onSubmit={loginHandeler}>
@@ -36,7 +36,7 @@ export const UserForm = () => {
                             <Form.Control type="password" placeholder="Enter your password" />
                         </Form.Group>
                         <Container>
-                            <Button type="submit">
+                            <Button type="submit" className="btn btn-dark">
                                 Login
                             </Button>
                         </Container>

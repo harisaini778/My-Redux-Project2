@@ -30,19 +30,19 @@ const Counter = () => {
     <div>
       <Container className="mt-4">
         <Card>
-          <Card.Header>
-            <h2>Redux Counter</h2>
+          <Card.Header className="bg-dark">
+            <h2 style={{color:"white"}}>Redux Counter</h2>
           </Card.Header>
           <Card.Body>{showCounter ? <h1>{counter}</h1> : null}</Card.Body>
           <Card.Footer>
             <div className="d-flex justify-content-center">
               <Stack direction="horizontal" gap="3" className="mb-2">
-                <Button onClick={incrementHandler}>Increment</Button>
-                <Button onClick={increaseHandler}>Increment By 5</Button>
-                <Button onClick={decrementHandler}>Decrement</Button>
+                <Button onClick={incrementHandler} className="btn btn-dark">Increment</Button>
+                <Button onClick={increaseHandler} className="btn btn-dark">Increment By 5</Button>
+                <Button onClick={decrementHandler} className="btn btn-dark">Decrement</Button>
               </Stack>
             </div>
-            <Button onClick={toggleCounterHandler}>Toggle Counter</Button>
+            <Button onClick={toggleCounterHandler} className="btn btn-dark">Toggle Counter</Button>
           </Card.Footer>
         </Card>
       </Container>

@@ -19,11 +19,11 @@ export const Header = () => {
 
     return (
         <div>
-           <Navbar expand="lg" className="bg-primary" variant="dark">
-      <Container>
-        <Navbar.Brand href="#home">Redux Auth</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar expand="lg" className="bg-dark" variant="dark">
+                <Container >
+                    <Navbar.Brand href="#home"><h1>Redux Auth</h1></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
                         {isAuth && <Nav className="ms-auto">
                             <Stack direction="horizontal" gap="2" >
                                 <Nav.Link href="MyProducts" >My Products</Nav.Link>
@@ -33,11 +33,11 @@ export const Header = () => {
                                 </Button>
                             </Stack>
                         </Nav>}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    </div>
-)
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </div>
+    )
 
 };
  
