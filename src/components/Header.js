@@ -1,7 +1,21 @@
 import React from "react";
-import { Navbar, Nav, Container,Stack,Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Stack, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store";
 
 export const Header = () => {
+
+    const isAuth = useSelector(
+        state => state.auth.isAuthenticated
+    );
+
+    const dispatch = useDispatch();
+
+    const logoutHandeler = (event) => {
+        event.preventDefault();
+        dispatch(authActions.logout());
+    }
 
     return (
         <div>
@@ -10,15 +24,15 @@ export const Header = () => {
         <Navbar.Brand href="#home">Redux Auth</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Stack direction = "horizontal" gap="2" >
+                        {isAuth && <Nav className="ms-auto">
+                            <Stack direction="horizontal" gap="2" >
                                 <Nav.Link href="MyProducts" >My Products</Nav.Link>
                                 <Nav.Link href="MySales">My Sales</Nav.Link>
-                                <Button className="btn btn-warning">
-                                 Logout
-                                </Button>                    
-            </Stack>
-          </Nav>
+                                <Button onClick={logoutHandeler} className="btn btn-warning">
+                                    Logout
+                                </Button>
+                            </Stack>
+                        </Nav>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -1,8 +1,8 @@
 import React from "react";
 export const UserProfile = () => {
     return (
-        <div>
-            <h1>Welcome Redux User</h1>
+        <div className="mt-5">
+            <h1>Welcome Onboard Redux User!!!</h1>
       </div>
   )  
 };

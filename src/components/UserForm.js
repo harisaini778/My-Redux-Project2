@@ -1,37 +1,48 @@
 import React from "react";
 import { Form, Button, Card, Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store";
+import { useSelector } from "react-redux";
 
 
 export const UserForm = () => {
 
+    const isAuth = useSelector(state=> state.auth.isAuthenticated);
+
+    const dispatch = useDispatch();
+
+    const loginHandeler = (event) => {
+        event.preventDefault();
+        dispatch(authActions.login());
+}
     return (
         <div className="d-flex justify-content-center mt-5">
-            <Card>
+            {!isAuth && <Card>
                 <Card.Header>
                     <h2>Redux User Login </h2>
                 </Card.Header>
                 <Card.Body>
-                    <Form>
+                    <Form onSubmit={loginHandeler}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>
-                                Email address : 
+                                Email address :
                             </Form.Label>
-                            <Form.Control type="email" placeholder="Enter your email"/>
+                            <Form.Control type="email" placeholder="Enter your email" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>
-                            Enter password : 
+                                Enter password :
                             </Form.Label>
-                            <Form.Control type="password" placeholder="Enter your password"/>
+                            <Form.Control type="password" placeholder="Enter your password" />
                         </Form.Group>
                         <Container>
-                            <Button>
+                            <Button type="submit">
                                 Login
                             </Button>
                         </Container>
                     </Form>
                 </Card.Body>
-            </Card>
+            </Card>}
     </div>
 );
 
