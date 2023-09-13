@@ -31,7 +31,7 @@ const Counter = () => {
       <Container className="mt-4">
         <Card>
           <Card.Header>
-            <h1>Redux Counter</h1>
+            <h2>Redux Counter</h2>
           </Card.Header>
           <Card.Body>{showCounter ? <h1>{counter}</h1> : null}</Card.Body>
           <Card.Footer>
